@@ -10,9 +10,14 @@ import Result
 
 /// Errors thrown by the CollectionNotifier class
 public enum CollectionNotifierError: Error {
+	/// an operation was attempted on an invalid index
 	case indexOutOfBounds
+	/// an operation was attempted on an object not in the collection
 	case noSuchElement
+	/// an atempt was made to append/insert an object that is already in the collection
 	case duplicateElement
+	/// An update() was attempted on an object with an invalid parameter
+	case updateNotApplicable
 }
 
 /// A protocol for objects that can be updated in place and keep the same object identity. Their equality should not be based on their content (or use ObjectIdentifier).

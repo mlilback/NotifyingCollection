@@ -1,3 +1,5 @@
+![Swift 2.2](https://img.shields.io/badge/Swift-3.0.1-brightgreen.svg?style=plastic)
+
 # Notifying Collection
 
 This project is in its infancy, more documentation will come as it is developed. The goal is an array-like class with a (reactive) signal that sends change notifications with details about what changed. That was pretty easy. The hard part is allowing for nested updates. For example, You could have a collection of Widgets and in addition to being notified when that array is modified, you also get forwarded signals from the widget's parts collection.

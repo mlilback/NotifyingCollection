@@ -10,9 +10,7 @@
 		0881B52E1DD2361700679DB3 /* NotifyingCollection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B5241DD2361700679DB3 /* NotifyingCollection.framework */; };
 		0881B5331DD2361700679DB3 /* NotifyingCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5321DD2361700679DB3 /* NotifyingCollectionTests.swift */; };
 		0881B5351DD2361700679DB3 /* NotifyingCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 0881B5271DD2361700679DB3 /* NotifyingCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0881B5401DD236C200679DB3 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B53E1DD236C200679DB3 /* ReactiveSwift.framework */; };
 		0881B5411DD236C200679DB3 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B53E1DD236C200679DB3 /* ReactiveSwift.framework */; };
-		0881B5421DD236C200679DB3 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B53F1DD236C200679DB3 /* Result.framework */; };
 		0881B5431DD236C200679DB3 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B53F1DD236C200679DB3 /* Result.framework */; };
 		0881B5461DD236F400679DB3 /* ReactiveSwift.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B53E1DD236C200679DB3 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0881B5471DD236F700679DB3 /* Result.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B53F1DD236C200679DB3 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -25,6 +23,8 @@
 		0881B5531DD23AAF00679DB3 /* CollectionChangeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5521DD23AAF00679DB3 /* CollectionChangeSpec.swift */; };
 		0881B5551DD4F2AE00679DB3 /* NestingCollectionNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5541DD4F2AE00679DB3 /* NestingCollectionNotifier.swift */; };
 		0881B5571DD503F100679DB3 /* NestingCollectionNotifierSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5561DD503F100679DB3 /* NestingCollectionNotifierSpec.swift */; };
+		08F6AD9A1DD636C300AF0722 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F6AD991DD636C300AF0722 /* Result.framework */; };
+		08F6AD9C1DD636C500AF0722 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F6AD9B1DD636C500AF0722 /* ReactiveSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +70,8 @@
 		0881B5521DD23AAF00679DB3 /* CollectionChangeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionChangeSpec.swift; sourceTree = "<group>"; };
 		0881B5541DD4F2AE00679DB3 /* NestingCollectionNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestingCollectionNotifier.swift; sourceTree = "<group>"; };
 		0881B5561DD503F100679DB3 /* NestingCollectionNotifierSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestingCollectionNotifierSpec.swift; sourceTree = "<group>"; };
+		08F6AD991DD636C300AF0722 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../../Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
+		08F6AD9B1DD636C500AF0722 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = ../../Carthage/Build/Mac/ReactiveSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0881B5401DD236C200679DB3 /* ReactiveSwift.framework in Frameworks */,
-				0881B5421DD236C200679DB3 /* Result.framework in Frameworks */,
+				08F6AD9A1DD636C300AF0722 /* Result.framework in Frameworks */,
+				08F6AD9C1DD636C500AF0722 /* ReactiveSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +144,8 @@
 		0881B5441DD236C800679DB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08F6AD9B1DD636C500AF0722 /* ReactiveSwift.framework */,
+				08F6AD991DD636C300AF0722 /* Result.framework */,
 				0881B54C1DD23A5700679DB3 /* Nimble.framework */,
 				0881B54D1DD23A5700679DB3 /* Quick.framework */,
 				0881B53E1DD236C200679DB3 /* ReactiveSwift.framework */,
@@ -495,6 +499,7 @@
 				0881B53A1DD2361700679DB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0881B53B1DD2361700679DB3 /* Build configuration list for PBXNativeTarget "NotifyingCollectionTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +508,7 @@
 				0881B53D1DD2361700679DB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -48,19 +48,20 @@ public typealias ArrayWrapperElement = Hashable & AnyObject
 /// }
 /// ```
 ///
-public final class CollectionNotifier<Element: ArrayWrapperElement>: Collection, ExpressibleByArrayLiteral
+public class CollectionNotifier<Element: ArrayWrapperElement>: Collection
 {
 	public typealias Change = CollectionChange<Element>
+	
 	public var values: [Element] { return _array }
 	public private(set) var changeSignal: Signal<[Change], NoError>
 	
 	fileprivate var changeObserver: Observer<[Change], NoError>
-	fileprivate var _array: [Element] = []
+	var _array: [Element] = []
 	private var _pendingChanges: [Change]?
 	
 	public var count: Int { return _array.count }
 	
-	public init() {
+	public required init() {
 		let (signal, observer) = Signal<[Change], NoError>.pipe()
 		changeSignal = signal
 		changeObserver = observer
@@ -68,8 +69,17 @@ public final class CollectionNotifier<Element: ArrayWrapperElement>: Collection,
 	
 	/// initialize with an array literal
 	///
-	/// - Parameter elements: elements to add
+	/// - Parameter elements: initial elements to start with
 	public convenience init(arrayLiteral elements: Element...) {
+		self.init()
+		//force because only throws if there is auplicate element
+		try! append(contentsOf: elements)
+	}
+
+	/// initialize with an array literal
+	///
+	/// - Parameter elements: initial elements to start with
+	public convenience init(elements: [Element]) {
 		self.init()
 		//force because only throws if there is auplicate element
 		try! append(contentsOf: elements)
@@ -78,6 +88,17 @@ public final class CollectionNotifier<Element: ArrayWrapperElement>: Collection,
 	deinit {
 		changeObserver.send(value: [Change(done: true)])
 		changeObserver.sendCompleted()
+	}
+	
+	/// Gets a value at a specified index, returning nil if invalid index
+	///
+	/// - Parameter index: the index of the object to get
+	/// - Returns: the object, or nil if there is no object at that index
+	public func valueAtIndex(_ index: Int) -> Element? {
+		guard index >= 0 && index < _array.count else {
+			return nil
+		}
+		return _array[index]
 	}
 	
 	/// true if stopGroupingChanges() was called and not yet followed by stopGroupingChanges() or cancelGroupedChanges()
@@ -123,7 +144,7 @@ public final class CollectionNotifier<Element: ArrayWrapperElement>: Collection,
 		//iterate newElements adding each value and creating a change notification to send
 		var changes: [CollectionChange<Element>] = []
 		for val in newElements {
-			_array.append(val)
+			insertInArray(element: val, index: _array.count)
 			changes.append(CollectionChange(insert: val, at: _array.count - 1))
 		}
 		sendChanges(changes)
@@ -142,7 +163,7 @@ public final class CollectionNotifier<Element: ArrayWrapperElement>: Collection,
 		guard !_array.contains(value) else {
 			throw CollectionNotifierError.duplicateElement
 		}
-		_array.insert(value, at: index)
+		insertInArray(element: value, index: index)
 		sendChanges([CollectionChange(insert: value, at: index)])
 	}
 	
@@ -154,7 +175,7 @@ public final class CollectionNotifier<Element: ArrayWrapperElement>: Collection,
 		guard let idx = _array.index(of: value) else {
 			throw CollectionNotifierError.noSuchElement
 		}
-		_array.remove(at: idx)
+		removeFromArray(index: idx)
 		sendChanges([CollectionChange(remove: value, at: idx)])
 	}
 	
@@ -167,7 +188,7 @@ public final class CollectionNotifier<Element: ArrayWrapperElement>: Collection,
 			throw CollectionNotifierError.indexOutOfBounds
 		}
 		let toRemove = _array[index]
-		_array.remove(at: index)
+		removeFromArray(index: index)
 		sendChanges([CollectionChange(remove: toRemove, at: index)])
 	}
 	
@@ -175,6 +196,20 @@ public final class CollectionNotifier<Element: ArrayWrapperElement>: Collection,
 	public func removeAll() {
 		_array.removeAll()
 		sendChanges([CollectionChange<Element>()])
+	}
+	
+	/// Allow subclasses to perform actions when an element is inserted into _array
+	///
+	/// - Parameter element: the element to append
+	func insertInArray(element: Element, index: Int) {
+		_array.insert(element, at: index)
+	}
+
+	/// Allow subclasses to perform actions when an element is removed from _array
+	///
+	/// - Parameter index: the index of the element to remove
+	func removeFromArray(index: Int) {
+		_array.remove(at: index)
 	}
 	
 	/// used internally to send changes, grouping if configured to do so

@@ -10,20 +10,22 @@ import Foundation
 /// - remove: an object was removed
 /// - update: 1+ properties have changed on an object
 /// - reload: the entire collection should be reloaded as changes are too numerous (such as from sorting)
-/// - nested: an object's property triggered changes
 /// - done: no more changes are coming
 public enum ChangeType {
-	case insert, remove, update, reload, nested, done
+	case insert, remove, update, reload, done
 }
 
 /// Encapsulates a change in an array of type T objects.
-public struct CollectionChange<T>: ChangeTypeNotification {
+public struct CollectionChange<T>: CustomStringConvertible {
 //	public static var refreshed: ArrayChange<T> { return ArrayChange() }
 	
 	public let changeType: ChangeType
 	public let object: T?
 	public let index: Int?
-	public let nestedChanges: [AnyCollectionChange<T>]?
+	
+	public var description: String {
+		return "change: \(changeType) index: \(index) object: \(object)"
+	}
 	
 	/// initializer for a reload or done change. Only one may be true
 	///
@@ -36,7 +38,6 @@ public struct CollectionChange<T>: ChangeTypeNotification {
 		changeType = reload ? .reload : .done
 		object = nil
 		index = nil
-		nestedChanges = nil
 	}
 	
 	/// initializer for an .insert change
@@ -48,7 +49,6 @@ public struct CollectionChange<T>: ChangeTypeNotification {
 		changeType = .insert
 		object = obj
 		index = at
-		nestedChanges = nil
 	}
 	
 	/// initializer for a .remove change
@@ -60,7 +60,6 @@ public struct CollectionChange<T>: ChangeTypeNotification {
 		changeType = .remove
 		object = obj
 		index = at
-		nestedChanges = nil
 	}
 	
 	/// initializer for a .update change
@@ -70,39 +69,5 @@ public struct CollectionChange<T>: ChangeTypeNotification {
 		changeType = .update
 		object = obj
 		index = nil
-		nestedChanges = nil
-	}
-	
-	/// initializer for a nested change
-	///
-	/// - Parameters:
-	///   - object: the object that had the nestedChanges
-	///	  - nestedChanges: the nested CollectioChanges
-	init(object: T, nestedChanges: [AnyCollectionChange<T>]) {
-		changeType = .nested
-		self.nestedChanges = nestedChanges
-		self.object = object
-		index = nil
 	}
 }
-
-/// A protocol needed to allow for type erasure of nested changes
-public protocol ChangeTypeNotification {
-	associatedtype NotificationSource
-	
-	var changeType: ChangeType { get }
-	var object: NotificationSource { get }
-	var index: Int? { get }
-}
-
-/// type-erased CollectionChange
-public struct AnyCollectionChange<T>: ChangeTypeNotification
-{
-	public typealias NotificationSource = CollectionChange<T>
-	private let _source: NotificationSource
-
-	public var changeType: ChangeType { return _source.changeType }
-	public var object: NotificationSource { return _source }
-	public var index: Int? { return _source.index }
-}
-

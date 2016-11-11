@@ -17,12 +17,14 @@
 		0881B5461DD236F400679DB3 /* ReactiveSwift.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B53E1DD236C200679DB3 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0881B5471DD236F700679DB3 /* Result.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B53F1DD236C200679DB3 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0881B54A1DD2374500679DB3 /* CollectionChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5481DD2374500679DB3 /* CollectionChange.swift */; };
-		0881B54B1DD2374500679DB3 /* NotifyingCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5491DD2374500679DB3 /* NotifyingCollection.swift */; };
+		0881B54B1DD2374500679DB3 /* CollectionNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5491DD2374500679DB3 /* CollectionNotifier.swift */; };
 		0881B54E1DD23A5700679DB3 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B54C1DD23A5700679DB3 /* Nimble.framework */; };
 		0881B54F1DD23A5700679DB3 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B54D1DD23A5700679DB3 /* Quick.framework */; };
 		0881B5501DD23A6100679DB3 /* Nimble.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B54C1DD23A5700679DB3 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0881B5511DD23A6500679DB3 /* Quick.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 0881B54D1DD23A5700679DB3 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0881B5531DD23AAF00679DB3 /* CollectionChangeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5521DD23AAF00679DB3 /* CollectionChangeSpec.swift */; };
+		0881B5551DD4F2AE00679DB3 /* NestingCollectionNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5541DD4F2AE00679DB3 /* NestingCollectionNotifier.swift */; };
+		0881B5571DD503F100679DB3 /* NestingCollectionNotifierSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0881B5561DD503F100679DB3 /* NestingCollectionNotifierSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,10 +64,12 @@
 		0881B53E1DD236C200679DB3 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/Mac/ReactiveSwift.framework; sourceTree = "<group>"; };
 		0881B53F1DD236C200679DB3 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		0881B5481DD2374500679DB3 /* CollectionChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionChange.swift; sourceTree = "<group>"; };
-		0881B5491DD2374500679DB3 /* NotifyingCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotifyingCollection.swift; sourceTree = "<group>"; };
+		0881B5491DD2374500679DB3 /* CollectionNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionNotifier.swift; sourceTree = "<group>"; };
 		0881B54C1DD23A5700679DB3 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		0881B54D1DD23A5700679DB3 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		0881B5521DD23AAF00679DB3 /* CollectionChangeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionChangeSpec.swift; sourceTree = "<group>"; };
+		0881B5541DD4F2AE00679DB3 /* NestingCollectionNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestingCollectionNotifier.swift; sourceTree = "<group>"; };
+		0881B5561DD503F100679DB3 /* NestingCollectionNotifierSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestingCollectionNotifierSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				0881B5481DD2374500679DB3 /* CollectionChange.swift */,
-				0881B5491DD2374500679DB3 /* NotifyingCollection.swift */,
+				0881B5491DD2374500679DB3 /* CollectionNotifier.swift */,
+				0881B5541DD4F2AE00679DB3 /* NestingCollectionNotifier.swift */,
 				0881B5271DD2361700679DB3 /* NotifyingCollection.h */,
 				0881B5281DD2361700679DB3 /* Info.plist */,
 			);
@@ -129,6 +134,7 @@
 				0881B5321DD2361700679DB3 /* NotifyingCollectionTests.swift */,
 				0881B5521DD23AAF00679DB3 /* CollectionChangeSpec.swift */,
 				0881B5341DD2361700679DB3 /* Info.plist */,
+				0881B5561DD503F100679DB3 /* NestingCollectionNotifierSpec.swift */,
 			);
 			path = NotifyingCollectionTests;
 			sourceTree = "<group>";
@@ -259,7 +265,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0881B54A1DD2374500679DB3 /* CollectionChange.swift in Sources */,
-				0881B54B1DD2374500679DB3 /* NotifyingCollection.swift in Sources */,
+				0881B54B1DD2374500679DB3 /* CollectionNotifier.swift in Sources */,
+				0881B5551DD4F2AE00679DB3 /* NestingCollectionNotifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0881B5571DD503F100679DB3 /* NestingCollectionNotifierSpec.swift in Sources */,
 				0881B5531DD23AAF00679DB3 /* CollectionChangeSpec.swift in Sources */,
 				0881B5331DD2361700679DB3 /* NotifyingCollectionTests.swift in Sources */,
 			);

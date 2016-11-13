@@ -17,6 +17,10 @@ final class NestedInfo<Element: ArrayWrapperElement> {
 		self.observe = observer
 	}
 	
+	deinit {
+		disposables.forEach { $0.value.dispose() }
+	}
+	
 	func startObserving(_ element: Element) {
 		if let disp = observe(element) {
 			disposables[element] = disp
@@ -24,6 +28,7 @@ final class NestedInfo<Element: ArrayWrapperElement> {
 	}
 	
 	func stopObserving(_ element: Element) {
+		disposables[element]?.dispose()
 		disposables.removeValue(forKey: element)
 	}
 }

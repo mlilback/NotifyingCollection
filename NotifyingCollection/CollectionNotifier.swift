@@ -63,7 +63,7 @@ public class CollectionNotifier<Element: ArrayWrapperElement>: Collection
 	
 	public required init() {
 		let (signal, observer) = Signal<[Change], NoError>.pipe()
-		changeSignal = signal
+		changeSignal = signal.observe(on: UIScheduler())
 		changeObserver = observer
 	}
 	

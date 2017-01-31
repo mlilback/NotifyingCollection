@@ -24,7 +24,7 @@ public struct CollectionChange<T>: CustomStringConvertible {
 	public let index: Int?
 	
 	public var description: String {
-		return "change: \(changeType) index: \(index) object: \(object)"
+		return "change: \(changeType) index: \(index ?? -1) object: \(String(describing: object))"
 	}
 	
 	/// initializer for a reload or done change. Only one may be true

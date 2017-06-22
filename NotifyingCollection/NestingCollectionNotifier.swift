@@ -62,13 +62,15 @@ public final class NestingCollectionNotifier<Element: ArrayWrapperElement>: Coll
 	/// overridden to tell observers to observe this element
 	override func insertInArray(element: Element, index: Int) {
 		super.insertInArray(element: element, index: index)
-		_observersInfo.forEach { (k, v) in v.startObserving(element) }
+		// TUPLE_HACK
+		_observersInfo.forEach { (arg) in let (_, v) = arg; v.startObserving(element) }
 	}
 	
 	/// overridden to tell observers to stop observing element at index
 	override func removeFromArray(index: Int) {
 		if let element = valueAtIndex(index) {
-			_observersInfo.forEach { (k, v) in v.stopObserving(element) }
+			// TUPLE_HACK
+			_observersInfo.forEach { (arg) in let (_, v) = arg; v.stopObserving(element) }
 		}
 		super.removeFromArray(index: index)
 	}

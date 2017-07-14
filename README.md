@@ -8,7 +8,7 @@ This is currently targeted for macOS, but there is and will be no reason it shou
 
 ## Dependencies
 
-This project requires macOS Sierra. Development is being done with Xcode 8.1.
+This project requires macOS Sierra. Development is being done with Xcode 9.0b3.
 
 * [ReactiveSwift](https://github.com/ReactiveCocoa/ReactiveSwift): the foundation for this project
 

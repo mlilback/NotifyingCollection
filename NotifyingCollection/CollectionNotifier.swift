@@ -55,7 +55,7 @@ public class CollectionNotifier<Element: ArrayWrapperElement>: Collection
 	public var values: [Element] { return _array }
 	public private(set) var changeSignal: Signal<[Change], NoError>
 	
-	fileprivate var changeObserver: Observer<[Change], NoError>
+	fileprivate var changeObserver: Signal<[Change], NoError>.Observer
 	var _array: [Element] = []
 	private var _pendingChanges: [Change]?
 	
